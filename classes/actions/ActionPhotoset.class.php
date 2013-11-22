@@ -176,7 +176,7 @@ class PluginRemotephoto_ActionPhotoset extends PluginRemotephoto_Inherit_ActionP
         /*
          * Проверка на использование плагина "Domain for static"
          */
-        if (class_exists('PluginStaticdomain')) {
+        if (class_exists('PluginStaticdomain') || class_exists('PluginSelectelStorage')) {
             $plugins = $this->Plugin_GetActivePlugins();
             if (in_array('staticdomain', $plugins)) {
                 $sFilePathOld = $sFile;
@@ -184,6 +184,8 @@ class PluginRemotephoto_ActionPhotoset extends PluginRemotephoto_Inherit_ActionP
                 $sStatic = rtrim(str_replace(DIRECTORY_SEPARATOR,'/',Config::Get('plugin.staticdomain.static_server')),'/');
                 $sFile = str_replace($sServer . '/', $sStatic . '/', $sFilePathOld);
                 @rename(str_replace('/', DIRECTORY_SEPARATOR, $sFilePathOld), str_replace('/', DIRECTORY_SEPARATOR, $sFile));
+            } elseif (in_array('selectelstorage', $plugins)) {
+                $sFile = $this->Image_UploadToSelectelStorage($sFile);
             }
         }
         $sFile = $this->Image_GetWebPath($sFile);
