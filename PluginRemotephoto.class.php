@@ -18,6 +18,12 @@ if (! class_exists ( 'Plugin' )) {
 
 class PluginRemotephoto extends Plugin {
 
+    public $aDelegates = array(
+        'template' => array(
+            'modals/modal.photoset_add_photo.tpl' => '_modal.photoset_add_photo.tpl',
+        ),
+    );
+
     protected $aInherits = array(
         'action' => array('ActionPhotoset')
     );
