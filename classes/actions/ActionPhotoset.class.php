@@ -185,7 +185,7 @@ class PluginRemotephoto_ActionPhotoset extends PluginRemotephoto_Inherit_ActionP
                 $sFile = str_replace($sServer . '/', $sStatic . '/', $sFilePathOld);
                 @rename(str_replace('/', DIRECTORY_SEPARATOR, $sFilePathOld), str_replace('/', DIRECTORY_SEPARATOR, $sFile));
             } elseif (in_array('selectelstorage', $plugins)) {
-                $sFile = $this->Image_UploadToSelectelStorage($sFile);
+                $sFile = $this->PluginSelectelStorage_Image_UploadToSelectelStorage($sFile);
             }
         }
         $sFile = $this->Image_GetWebPath($sFile);
